@@ -111,7 +111,7 @@ def main():
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
 
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             elif option == "GPT-4":
                 cost_per_day = (
@@ -130,7 +130,7 @@ def main():
                 st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             else:
                 st.error("Please select an LLM")
@@ -189,7 +189,7 @@ def main():
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
 
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             elif option == "Anthropic Claude":
                 cost_per_day = (
@@ -208,7 +208,7 @@ def main():
                 st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             elif option == "Titan Lite":
                 cost_per_day = (
@@ -227,7 +227,7 @@ def main():
                 st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             elif option == "Titan Express":
                 cost_per_day = (
@@ -246,7 +246,7 @@ def main():
                 st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
                 st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
                 st.write(
-                    "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
                 )
             else:
                 st.error("Please select an LLM")
