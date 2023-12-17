@@ -20,7 +20,7 @@ img = Image.open("neuralweb.png")
 # Set the page configuration
 st.set_page_config(layout="wide", page_title="LLM Cost Analysis", page_icon=img)
 
-c1, c2, c3 = st.columns([10, 7, 1.5])
+c1, c2, c3 = st.columns([8, 7, 1.5])
 
 
 with c1:
@@ -297,7 +297,7 @@ def main():
             st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
 
             st.write(
-                "*Note: This calculation is based on the assumptions. This app don't take any responsibility for the accuracy of the calculation. Please use this app at your own risk."
+                "*Note: This calculation is based on the assumptions, costs may subjected to change*"
             )
 
     with tab4:
