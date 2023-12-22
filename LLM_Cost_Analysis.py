@@ -25,7 +25,7 @@ with c2:
         - Let our app do the heavy lifting and provide you with cost estimates and insights.
         - Gain insights into the financial aspects."""
     )
-    
+
 with c3:
     st.image("neuralweb.png")
 
@@ -48,6 +48,15 @@ TITANEX_COMPLETION_COST = 0.0017 / 1000
 BISON_PROMPT_COST = 0.0005 / 1000
 BISON_COMPLETION_COST = 0.0005 / 1000
 
+ANYSCALE_MISTRAL_PROMPT_COST = 0.0005 / 1000
+ANYSCALE_MISTRAL_COMPLETION_COST = 0.0005 / 1000
+
+DEEPINFRA_MISTRAL_PROMPT_COST = 0.00027 / 1000
+DEEPINFRA_MISTRAL_COMPLETION_COST = 0.00027 / 1000
+
+TOGETHER_MISTRAL_PROMPT_COST = 0.0006 / 1000
+TOGETHER_MISTRAL_COMPLETION_COST = 0.0006 / 1000
+
 
 def num_tokens_from_string(string: str, encoding_name: str) -> int:
     encoding = tiktoken.get_encoding(encoding_name)
@@ -68,26 +77,26 @@ def main():
 
         with col1:
             st.subheader("Execute a Simulation")
-            average_number_of_employees = st.slider(
-                "Average number of Employees", 0, 1000, 0
+            average_number_of_Users = st.slider(
+                "Average number of Users", 0, 100000, 1000
             )
             average_prompt_frequency = st.slider(
-                "Average number of Prompt Frequency (Per Day)/Employee", 0, 500, 0
+                "Average number of Prompt Frequency (Per Day)/User", 0, 500, 20
             )
-            average_prompt_tokens = st.slider("Average Prompt Tokens Length", 0, 500, 0)
+            average_prompt_tokens = st.slider("Average Prompt Tokens Length", 0, 500, 300)
             average_completions_tokens = st.slider(
-                "Average Completions Tokens Length", 0, 2000, 0
+                "Average Completions Tokens Length", 0, 2000, 200
             )
 
         with col2:
             st.subheader("Cost Analysis")
             if option == "GPT-35-Turbo":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * GPT_35_TURBO_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * GPT_35_TURBO_COMPLETION_COST
@@ -103,11 +112,11 @@ def main():
                 )
             elif option == "GPT-4":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * GPT4_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * GPT4_COMPLETION_COST
@@ -140,32 +149,32 @@ def main():
         with col1:
             st.subheader("Execute a Simulation")
 
-            average_number_of_employees = st.slider(
-                "Average number of Employees", 0, 1000, 0, key="tab2"
+            average_number_of_Users = st.slider(
+                "Average number of Users", 0, 100000, 1000, key="tab2"
             )
             average_prompt_frequency = st.slider(
-                "Average number of Prompt Frequency (Per Day)/Employee",
+                "Average number of Prompt Frequency (Per Day)/User",
                 0,
                 500,
-                0,
+                20,
                 key="tab3",
             )
             average_prompt_tokens = st.slider(
-                "Average Prompt Tokens Length", 0, 500, 0, key="tab4"
+                "Average Prompt Tokens Length", 0, 500, 300, key="tab4"
             )
             average_completions_tokens = st.slider(
-                "Average Completions Tokens Length", 0, 2000, 0, key="tab5"
+                "Average Completions Tokens Length", 0, 2000, 200, key="tab5"
             )
 
         with col2:
             st.subheader("Cost Analysis")
             if option == "Anthropic Claude-Instant":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * CLAUDEIN_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * CLAUDEIN_COMPLETION_COST
@@ -181,11 +190,11 @@ def main():
                 )
             elif option == "Anthropic Claude":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * CLAUDE_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * CLAUDE_COMPLETION_COST
@@ -200,11 +209,11 @@ def main():
                 )
             elif option == "Titan Lite":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * TITANLT_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * TITANLT_COMPLETION_COST
@@ -219,11 +228,11 @@ def main():
                 )
             elif option == "Titan Express":
                 cost_per_day = (
-                    average_number_of_employees
+                    average_number_of_Users
                     * average_prompt_frequency
                     * average_prompt_tokens
                     * TITANEX_PROMPT_COST
-                    + average_number_of_employees
+                    + average_number_of_Users
                     * average_prompt_frequency
                     * average_completions_tokens
                     * TITANEX_COMPLETION_COST
@@ -248,32 +257,32 @@ def main():
         with col1:
             st.subheader("Execute a Simulation")
             # option = st.selectbox('Select an LLM:', ('Text Bison'))
-            average_number_of_employees = st.slider(
-                "Average number of Employees", 0, 1000, 0, key="tab6"
+            average_number_of_Users = st.slider(
+                "Average number of Users", 0, 100000, 1000, key="tab6"
             )
             average_prompt_frequency = st.slider(
-                "Average number of Prompt Frequency (Per Day)/Employee",
+                "Average number of Prompt Frequency (Per Day)/User",
                 0,
                 500,
-                0,
+                20,
                 key="tab7",
             )
             average_prompt_tokens = st.slider(
-                "Average Prompt Tokens Length", 0, 500, 0, key="tab8"
+                "Average Prompt Tokens Length", 0, 500, 300, key="tab8"
             )
             average_completions_tokens = st.slider(
-                "Average Completions Tokens Length", 0, 2000, 0, key="tab9"
+                "Average Completions Tokens Length", 0, 2000, 200, key="tab9"
             )
 
         with col2:
             st.subheader("Cost Analysis")
             # if option == 'Claude':
             cost_per_day = (
-                average_number_of_employees
+                average_number_of_Users
                 * average_prompt_frequency
                 * average_prompt_tokens
                 * BISON_PROMPT_COST
-                + average_number_of_employees
+                + average_number_of_Users
                 * average_prompt_frequency
                 * average_completions_tokens
                 * BISON_COMPLETION_COST
@@ -290,7 +299,98 @@ def main():
 
     with tab4:
         st.header("OpenSource LLMs")
-        st.warning("Coming Soon")
+        st.info("Mistral MOE 8*7B  Hosting")
+        col1, col2 = st.columns([1, 1])
+
+        with col1:
+            st.subheader("Execute a Simulation")
+            option = st.selectbox(
+            "Select an LLM:",
+            (
+                "Anyscale Mistral",
+                "Deep Infra Mistral",
+                "Together Mistral",
+               
+            ))
+            average_number_of_Users = st.slider(
+                "Average number of Users", 0, 100000, 1000, key="tab10"
+            )
+            average_prompt_frequency = st.slider(
+                "Average number of Prompt Frequency (Per Day)/User",
+                0,
+                500,
+                20,
+                key="tab11",
+            )
+            average_prompt_tokens = st.slider(
+                "Average Prompt Tokens Length", 0, 500, 300, key="tab12"
+            )
+            average_completions_tokens = st.slider(
+                "Average Completions Tokens Length", 0, 2000, 200, key="tab13"
+            )
+
+        with col2:
+            st.subheader("Cost Analysis")
+            if option == "Anyscale Mistral":
+                cost_per_day = (
+                    average_number_of_Users
+                    * average_prompt_frequency
+                    * average_prompt_tokens
+                    * ANYSCALE_MISTRAL_PROMPT_COST
+                    + average_number_of_Users
+                    * average_prompt_frequency
+                    * average_completions_tokens
+                    * ANYSCALE_MISTRAL_COMPLETION_COST
+                )
+                cost_per_month = cost_per_day * 30
+                cost_per_year = cost_per_month * 12
+                st.success("Cost Per Day: " + " $" + str(round(cost_per_day, 3)))
+                st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
+                st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
+
+                st.write(
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
+                )
+            elif option == "Deep Infra Mistral":
+                cost_per_day = (
+                    average_number_of_Users
+                    * average_prompt_frequency
+                    * average_prompt_tokens
+                    * DEEPINFRA_MISTRAL_PROMPT_COST
+                    + average_number_of_Users
+                    * average_prompt_frequency
+                    * average_completions_tokens
+                    * DEEPINFRA_MISTRAL_COMPLETION_COST
+                )
+                cost_per_month = cost_per_day * 30
+                cost_per_year = cost_per_month * 12
+                st.success("Cost Per Day: " + " $" + str(round(cost_per_day, 3)))
+                st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
+                st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
+                st.write(
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
+                )
+            elif option == "Together Mistral":
+                cost_per_day = (
+                    average_number_of_Users
+                    * average_prompt_frequency
+                    * average_prompt_tokens
+                    * TOGETHER_MISTRAL_PROMPT_COST
+                    + average_number_of_Users
+                    * average_prompt_frequency
+                    * average_completions_tokens
+                    * TOGETHER_MISTRAL_COMPLETION_COST
+                )
+                cost_per_month = cost_per_day * 30
+                cost_per_year = cost_per_month * 12
+                st.success("Cost Per Day: " + " $" + str(round(cost_per_day, 3)))
+                st.success("Cost Per Month: " + " $" + str(round(cost_per_month, 3)))
+                st.success("Cost Per Year: " + " $" + str(round(cost_per_year, 3)))
+                st.write(
+                    "*Note: This calculation is based on the assumptions, costs may subjected to change*"
+                )
+            else:
+                st.error("Please select an LLM")
 
 
 if __name__ == "__main__":
